@@ -1,0 +1,32 @@
+$main-bg:rgb(23, 29, 96);
+$background-color_1: $main-bg;
+$border-color_1: $main-bg;
+
+.main-bg {
+	background: $main-bg !important;
+}
+input {
+	&:focus {
+		border: 1px solid $main-bg !important;
+		box-shadow: none !important;
+	}
+	border-radius: 0 !important;
+}
+button {
+	&:focus {
+		border: 1px solid $main-bg !important;
+		box-shadow: none !important;
+	}
+}
+.form-check-input {
+	&:checked {
+		background-color: $background-color_1 !important;
+		border-color: $border-color_1 !important;
+	}
+}
+.card {
+	border-radius: 0 !important;
+}
+.btn {
+	border-radius: 0 !important;
+}

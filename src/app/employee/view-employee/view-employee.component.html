@@ -1,0 +1,74 @@
+<h2>Task List </h2>
+
+<select class="form-select" (change)="onStatusChange()" [(ngModel)]="status" aria-label="Default select example">
+    <option selected>Open this select menu</option>
+    <option value="false">Not Completed</option>
+    <option value="true">Completed</option>
+  </select>
+<!-- <ng2-smart-table [settings]="settings" [source]="filteredList" ></ng2-smart-table>
+<ngx-datatable [rows]="rows" [columns]="columns" tableClass="table table-striped table-bordered table-hover" > </ngx-datatable> -->
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef> Weight </th>
+      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef> Symbol </th>
+      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTaskModal">
+   Add Task
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="addTaskModal" #addTaskModal tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addTaskModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Title</label>
+                <div class="col-sm-10">
+                  <input type="text" [(ngModel)]="title" class="form-control" >
+                </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="resetForm()" #closeModal class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button [disabled]="!title" type="button" (click)="addTask()" class="btn btn-primary">Add Task</button>
+        </div>
+      </div>
+    </div>
+  </div>
