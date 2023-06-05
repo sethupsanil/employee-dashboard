@@ -1,5 +1,10 @@
-<h2>Employee List ({{employeeList.length}})</h2>
-<input type="text" (keyup)="onSearch()" [(ngModel)]="searchValue" class="form-control">
+<div class="page_header">
+  <h2>Employee List ({{employeeList.length}})</h2>
+</div>
+
+<div class="filter_add_task_wrapper">
+  <input type="text" placeholder="Search.." (keyup)="onSearch()" [(ngModel)]="searchValue" class="form-control">
+</div>
 
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">

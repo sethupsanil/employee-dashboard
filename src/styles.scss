@@ -2,3 +2,10 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.btn {
+    font-size: 12px !important;
+  }
+  thead, tbody, tfoot, tr, td, th {
+    FONT-SIZE: 12PX !important;
+}

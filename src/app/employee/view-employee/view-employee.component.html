@@ -1,12 +1,19 @@
-<h2>Task List </h2>
-
-<select class="form-select" (change)="onStatusChange()" [(ngModel)]="status" aria-label="Default select example">
-    <option selected>Open this select menu</option>
+<div class="page_header">
+  <h2>Task List ({{filteredList.length}}) </h2>
+  <button class="btn btn-primary" [routerLink]="'/dashboard'" color="primary">Back</button>
+</div>
+<!-- Button trigger modal -->
+<div class="filter_add_task_wrapper">
+  <select class="form-select" (change)="onStatusChange()" [(ngModel)]="status" aria-label="Default select example">
+    <option value="all">All</option>
     <option value="false">Not Completed</option>
     <option value="true">Completed</option>
   </select>
-  <button class="btn btn-primary" [routerLink]="'/dashboard'" color="primary">Back</button>
-
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTaskModal">
+    Add Task
+  </button>
+</div>
+  
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
 
@@ -25,7 +32,7 @@
     <!-- Completed Column -->
     <ng-container matColumnDef="completed">
       <th mat-header-cell *matHeaderCellDef> Status </th>
-      <td mat-cell *matCellDef="let element"> {{element.completed ? 'Completed':'Not Completed'}} </td>
+      <td mat-cell *matCellDef="let element" [ngClass]="element.completed ? 'text-success':'text-danger'"> {{element.completed ? 'Completed':'Not Completed'}} </td>
     </ng-container>
 
    
@@ -39,11 +46,7 @@
   </mat-paginator>
 </div>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTaskModal">
-   Add Task
-  </button>
-  
+
   <!-- Modal -->
   <div class="modal fade" id="addTaskModal" #addTaskModal tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
     <div class="modal-dialog">

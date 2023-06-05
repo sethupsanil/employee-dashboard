@@ -11,21 +11,26 @@ export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;
   public invalidMessage!: string;
   constructor(private _formBuilder: FormBuilder, private _router: Router) {}
+
   ngOnInit(): void {
     this.initForm();
   }
-  onSubmit() {
+
+  // check value and set storage
+  onSubmit(): void {
     if (
       this.loginForm.value.username === 'fingent' &&
       this.loginForm.value.password === 'fingent'
     ) {
       this.invalidMessage = '';
+      localStorage.setItem('login', '1');
       this._router.navigate(['/dashboard']);
       return;
     }
     this.invalidMessage = 'Invalid credentials';
   }
 
+  // Initialize form
   private initForm(): void {
     this.loginForm = this._formBuilder.group({
       username: [null, [Validators.required]],

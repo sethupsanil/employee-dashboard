@@ -2,3 +2,50 @@ table {
     width: 100%;
   }
   
+  .page_header {
+    display: flex;
+    margin: 0 0 15px;
+    align-items: center;
+    justify-content: space-between;
+    h2 {
+      font-size: 16px;
+      margin: 0;
+  }
+  .btn {
+    background: none;
+    color: #333;
+    padding: 0 0 0 15px;
+    border: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    position: relative;
+    &::after {
+      position: absolute;
+      content: "";
+      border: 5px solid transparent;
+      border-right: 5px solid #333;
+      left: 0;
+      top: 4px;
+    }
+  }
+  }
+  .filter_add_task_wrapper {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+}
+.form-select {
+  width: 250px;
+}
+.filter_add_task_wrapper {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  margin: 0 0 30px;
+  border-top: 1px solid #f7f7f7;
+  padding: 15px 0 0;
+}
+
+::ng-deep.mat-mdc-paginator-container {
+  justify-content:space-between !important
+} 

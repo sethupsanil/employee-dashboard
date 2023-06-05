@@ -26,8 +26,7 @@ export class ViewEmployeeComponent implements OnInit, OnDestroy {
   @ViewChild('addTaskModal') addTaskModal!: ElementRef;
   @ViewChild('closeModal') closeModal!: ElementRef;
 
-  dataList: TodoList[] = [];
-  status!: string;
+  status: string = 'all';
   filteredList: TodoList[] = [];
   title!: string;
   userId!: number;
@@ -54,7 +53,6 @@ export class ViewEmployeeComponent implements OnInit, OnDestroy {
   getEmployeeTask(): void {
     this.subs.add(
       this.api.viewEmployeeTaskById(this.userId).subscribe((res) => {
-        this.dataList = res;
         this.dataSource = new MatTableDataSource<TodoList>(res);
         this.filteredList = res;
         this.dataSource.paginator = this.paginator;
@@ -64,22 +62,29 @@ export class ViewEmployeeComponent implements OnInit, OnDestroy {
   }
 
   onStatusChange(): void {
-    this.dataSource = new MatTableDataSource(
-      this.filteredList.filter(
-        (value) => value.completed.toString() === this.status.toString()
-      )
-    );
+    if (this.status == 'all') {
+      this.dataSource = new MatTableDataSource(this.filteredList);
+    } else {
+      this.dataSource = new MatTableDataSource(
+        this.filteredList.filter(
+          (value) => value.completed.toString() === this.status.toString()
+        )
+      );
+    }
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
   addTask(): void {
-    this.dataList.push({
-      id: this.dataList.length + 1,
+    this.filteredList.push({
+      id: this.filteredList.length + 1,
       userId: this.userId,
       title: this.title,
       completed: 'false',
     });
+    this.dataSource = new MatTableDataSource(this.filteredList);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     this.closeModal.nativeElement.click();
     this.resetForm();
   }

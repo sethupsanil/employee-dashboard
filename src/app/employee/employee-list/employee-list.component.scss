@@ -1,3 +1,31 @@
 .pointer{
     cursor: pointer;
 }
+
+.page_header {
+    display: flex;
+    margin: 0 0 15px;
+    align-items: center;
+    justify-content: space-between;
+    h2 {
+      font-size: 16px;
+      margin: 0;
+  }
+  }
+
+
+.filter_add_task_wrapper {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  margin: 0 0 30px;
+  border-top: 1px solid #f7f7f7;
+  padding: 15px 0 0;
+  input {
+    width: 250px;
+  }
+}
+::ng-deep.mat-mdc-paginator-container {
+    justify-content:space-between !important
+  } 
+  
